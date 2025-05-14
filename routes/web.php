@@ -5,5 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TodoItens::class, 'index']);
 Route::post('/create', [TodoItens::class, 'create']);
-Route::get('/edit', [TodoItens::class, 'edit']);
+Route::get('/edit/{id}', [TodoItens::class, 'edit']);
+Route::post('/update/{id}', [TodoItens::class, 'update']);
 Route::delete('/delete/{id}', [TodoItens::class, 'delete']);

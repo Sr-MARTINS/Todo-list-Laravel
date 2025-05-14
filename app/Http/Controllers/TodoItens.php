@@ -9,9 +9,8 @@ class TodoItens extends Controller
 {
     public function index()
     {
-        // $items = Itens::orderByDesc('created_at');
         $items = Itens::all();
-
+        
         return view('welcome', ['items' => $items]);
     }
 
@@ -30,9 +29,21 @@ class TodoItens extends Controller
 
     public function edit($id) 
     {
-        $itemEdit = Itens::findOrfail($id);
+        // $items = Itens::all();
 
-        return redirect('/punt', ['itemEdit' => $itemEdit]);
+        $itemEdit = Itens::findOrfail($id);
+        // dd($itemEdit->title);
+
+        return view('welcome', ['itemEdit' => $itemEdit]);
+    }
+
+    public function update(Request $request) 
+    {
+        $data = $request->all();
+
+        Itens::findOrfail($request->id)->update($data);
+
+        return redirect('/');
     }
 
     public function delete($id)
